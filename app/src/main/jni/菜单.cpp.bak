@@ -1,0 +1,160 @@
+   
+if (ImGui::Begin(OBFUSCATE("吉良 aimbot"), 0,ImGuiWindowFlags_AlwaysAutoResize)) {
+        
+
+           
+bool Bypass1 = true;
+bool Bypass2 = true;
+bool Bypass3 = true;
+bool Bypass4 = true;
+bool show = true;
+
+Config.AimBot.VisCheck = true;
+//Config.AimBot.IgnoreBot = true;
+ImGuiViewportP* viewport = (ImGuiViewportP*)ImGui::GetMainViewport();
+    
+					ImRect viewport_rect = viewport->GetMainRect();
+			
+					Snowflake::Update(Snow, Snowflake::vec3(ImGui::GetCursorPos().x, ImGui::GetCursorPos().y)/*mouse x and y*/, Snowflake::vec3(viewport_rect.Min.x, viewport_rect.Max.y)/*hWnd x and y positions*/); // you can change a few things inside the update function
+				
+//if(show){
+            
+            //ImGui::Text("吉良 Aimbot");
+
+    	//if (ImGui::BeginTabBar("Tab", ImGuiTabBarFlags_FittingPolicyScroll)) {
+    //	ImGui::Text("撸管之王吉良");
+  //  	ImGui::Separator();
+    	ImGui::Button("刷新");
+    	ImGui::SameLine();
+        ImGui::Text("");
+    	ImGui::SameLine();
+    	ImGui::Button("登出");
+    	ImGui::SameLine();
+        ImGui::Text("");
+    	ImGui::SameLine();
+    	ImGui::Button("卸载");
+    	ImGui::SameLine();
+        ImGui::Text("                   ");
+    	ImGui::SameLine();
+    	ImGui::Button("重置所有选项");
+    	ImGui::Text("详细风格");
+        ImGui::TableNextColumn();
+        static const char *targets1[] = {"中文", "英格离世"};
+        ImGui::Combo("##Target", (int *) &Config.AimBot.Target1, targets1, 2, -1); 
+        ImGui::SameLine();
+        ImGui::Text("语言");
+        static const char *TmodeText[] = {"绘制1", "绘制2"};
+        ImGui::Combo("##Trigger1", (int *) &Config.SilentAim.Tmode, TmodeText, 2, -1);
+        ImGui::SameLine();
+        ImGui::Text("菜单");
+        ImGui::TableNextColumn();
+        ImGui::Separator();
+    	ImGui::Text("版本号 :  1.0");
+        ImGui::Text("登录状态 :  成功");
+        
+        ImGui::Text("公告:作者 吉良 公益直装拒绝倒卖 telegram@IOS_JL");
+        
+        ImGui::Separator();
+        
+        ImGui::SliderFloat("后坐力比率", &压枪系数, 0.0f, 10.0f);  
+        ImGui::TableNextColumn();
+        ImGui::SliderFloat("自瞄速率", &Y算法, 0.0f, 100.0f);
+        ImGui::TableNextColumn();
+        ImGui::SliderFloat("预判比率", &预判算法, 0.0f, 10.0f);
+          //  ImGui::Checkbox("看你妈", &Config.ESPMenu.Skeleton);
+        ImGui::Separator();
+        
+        ImGui::Checkbox("射线  ", &Config.ESPMenu.Line); 
+        ImGui::SameLine();
+        ImGui::Checkbox("骨骼  ", &Config.ESPMenu.Skeleton);                                         
+        ImGui::SameLine();     
+        ImGui::Checkbox("血量  ", &Config.ESPMenu.Health);                        
+        ImGui::SameLine();
+        ImGui::Checkbox("名字  ", &Config.ESPMenu.Name);                                             
+        ImGui::Checkbox("距离  ", &Config.ESPMenu.Distance);                                                                                    
+        ImGui::SameLine();		
+        ImGui::Checkbox("忽机  ", &Config.ESPMenu.NoBot);				                           	                    		      	  
+        ImGui::SameLine();
+        ImGui::Checkbox("盒子  ",&Config.ESPMenu.LootBox);
+	    ImGui::SameLine();
+        ImGui::Checkbox("队伍  ", &Config.ESPMenu.TeamID);              
+      //  ImGui::Text("                   ");
+      //  ImGui::Separator();
+    //    ImGui::Text("                   ");
+       ImGui::Text("修改FPS选择");
+                          
+       static int 废物 = 0;
+       ImGui::RadioButton("30", &废物, 1);
+       ImGui::SameLine();
+       ImGui::Text("      ");
+       ImGui::SameLine();
+       ImGui::RadioButton("60", &废物, 2);
+       ImGui::SameLine();
+       ImGui::Text("      ");
+       ImGui::SameLine();
+       ImGui::RadioButton("90", &废物, 3);
+       ImGui::SameLine();
+       ImGui::Text("      ");
+       ImGui::SameLine();
+       
+switch (废物) {
+case 1:
+三十 = true;
+六十 = false;
+九十 = false;
+//ImGui::StyleColorsClassic();
+break;
+case 2:
+三十 = false;
+六十 = true;
+九十 = false;
+//ImGui::StyleColorsDark();
+break;
+case 3:
+三十 = false;
+六十 = false;
+九十 = true;
+//ImGui::StyleColorsLight();
+break;
+				}
+				
+	   ImGui::Separator();
+	   
+	   ImGui::TableNextColumn();
+	   ImGui::Button("复制设置至剪切板");
+       ImGui::SameLine();
+       ImGui::Text("                   ");
+	   ImGui::SameLine();
+       ImGui::Button("从粘贴板复制设置");
+       ImGui::Separator();
+       ImGui::SliderFloat("范围大小 ", &Config.AimBot.Cross, 0.0f, 200.0f);
+       ImGui::TableNextColumn();
+       ImGui::Checkbox("自瞄", &Config.AimBot.Enable);    
+       static const char *targets[] = {"头部", "身体"};
+       ImGui::Combo("##Target", (int *) &Config.AimBot.Target, targets, 2, -1);       
+       ImGui::TableNextColumn();
+       ImGui::Text("自瞄位置");
+       ImGui::TableNextColumn(); 
+       static const char *triggers[] = {"所有", "开火", "开镜", "镜内开火"};
+       ImGui::Combo("自瞄设置", (int *)&Config.AimBot.Trigger, triggers, 4, -1);        
+       ImGui::TableNextColumn();
+       ImGui::Text("自瞄模式");
+       ImGui::Checkbox("倒地不瞄", &Config.AimBot.IgnoreKnocked);					
+       ImGui::SameLine();
+       ImGui::Checkbox("掩体不瞄", &Config.AimBot.VisCheck);
+       ImGui::SameLine();
+       ImGui::Checkbox("人机不瞄", &Config.AimBot.IgnoreBot);  
+       ImGui::TableNextColumn();
+   //    ImGui::SliderInt("距离",&自瞄距离,  0.0f, 400.0f);
+				  	                                                        				   
+            
+            
+            
+            
+            
+
+
+
+
+
+}

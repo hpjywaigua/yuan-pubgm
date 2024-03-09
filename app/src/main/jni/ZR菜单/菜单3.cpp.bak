@@ -1,0 +1,213 @@
+//ImGui::SetNextWindowSize(ImVec2(390, 570));
+	//std::thread luffy_thread(probe_luffy);  // 路飞线程
+      //  luffy_thread.detach();
+        
+if (ImGui::Begin (OBFUSCATE("ZR"), 0, ImGuiWindowFlags_NoSavedSettings | ImGuiWindowFlags_AlwaysAutoResize)) {
+ImGuiViewportP* viewport = (ImGuiViewportP*)ImGui::GetMainViewport();
+    
+					ImRect viewport_rect = viewport->GetMainRect();
+			
+					Snowflake::Update(Snow, Snowflake::vec3(ImGui::GetCursorPos().x, ImGui::GetCursorPos().y)/*mouse x and y*/, Snowflake::vec3(viewport_rect.Min.x, viewport_rect.Max.y)/*hWnd x and y positions*/); // you can change a few things inside the update function
+//if (ImGui::Button("                                                                                  "))
+ImGui::TableNextColumn();
+if (ImGui::Button("                                     PUBGZR公益电报点击跳转                                      ")){
+OpenURL("https://t.me/FBBIBB"); 
+}
+ImGui::Separator();
+ImGui::Text("频道 ");
+ImGui::Separator();
+//ImGui::Text("当前Gui窗口大小: %.0f x %.0f", current_size.x, current_size.y);
+if(菜单1){
+
+if (ImGui::Button("<<防封区域"))
+    {
+    菜单1 = false;
+    菜单2 = false;
+    菜单3 = false;
+    菜单4 = true;
+    }
+    ImGui::SameLine();
+    ImGui::Text(" 作者[晓然] 合作[HZ] 感谢任何一个提供效果图玩家");
+    ImGui::SameLine();
+    if (ImGui::Button("自瞄区域>>"))
+    {
+    菜单1 = false;
+    菜单2 = true;
+    菜单3 = false;
+    }
+ImGui::Separator();
+ImGui::Text("绘制菜单");
+ImGui::Separator();
+static const char *TmodeText[] = {"绘制1", "绘制2", "绘制3"};
+ImGui::Combo("##Trigger1", (int *) &Config.SilentAim.Tmode, TmodeText, 3, -1);
+ImGui::Checkbox("显示射线", &Config.ESPMenu.Line);
+ImGui::TableNextColumn();
+ImGui::Checkbox("显示骨骼", &Config.ESPMenu.Skeleton);
+ImGui::TableNextColumn();
+ImGui::Checkbox("显示血量", &Config.ESPMenu.Health);
+ImGui::TableNextColumn();
+ImGui::Checkbox("显示名称", &Config.ESPMenu.Name);
+ImGui::TableNextColumn();
+ImGui::Checkbox("显示距离", &Config.ESPMenu.Distance);
+ImGui::TableNextColumn();
+ImGui::Checkbox("显示编号", &Config.ESPMenu.TeamID);
+ImGui::TableNextColumn();
+ImGui::Checkbox("显示盒子", &Config.ESPMenu.LootBox);
+ImGui::TableNextColumn();
+ImGui::Checkbox("显示载具", &Config.ESPMenu.Vehicle);
+ImGui::TableNextColumn();
+ImGui::Checkbox("显示手雷", &手雷);
+ImGui::TableNextColumn();
+ImGui::Checkbox("忽略人机", &Config.ESPMenu.NoBot);
+}
+if(菜单2){
+
+if (ImGui::Button("<<绘制区域"))
+    {
+    菜单1 = true;
+    菜单2 = false;
+    菜单3 = false;
+    }
+    ImGui::SameLine();
+    ImGui::Text("  作者[黑鲨] 合作[HZ] 感谢任何一个提供效果图玩家   ");
+    ImGui::SameLine();
+    if (ImGui::Button("功能区域>>"))
+    {
+    菜单1 = false;
+    菜单2 = false;
+    菜单3 = true;
+    }
+ImGui::Separator();
+ImGui::Text("功能菜单");
+ImGui::Separator();
+
+ImGui::Checkbox("自瞄", &Config.AimBot.Enable);    
+//ImGui::Checkbox("追踪", &悬浮窗);    
+static const char *targets[] = {"头部", "身体"};
+ImGui::Combo("##Target", (int *) &Config.AimBot.Target, targets, 2, -1);
+ImGui::TableNextColumn();
+ImGui::Text("自瞄位置");
+ImGui::TableNextColumn(); 
+static const char *triggers[] = {"所有", "开火", "开镜", "镜内开火"};
+ImGui::Combo("自瞄设置", (int *)&Config.AimBot.Trigger, triggers, 4, -1); 
+ImGui::TableNextColumn();
+ImGui::Text("自瞄模式");
+ImGui::Checkbox("倒地不瞄", &Config.AimBot.IgnoreKnocked);
+ImGui::SameLine();
+ImGui::Checkbox("掩体不瞄", &Config.AimBot.VisCheck);
+ImGui::TableNextColumn();
+ImGui::Checkbox("人机不瞄", &Config.AimBot.IgnoreBots);  
+ImGui::SliderFloat("压枪系数", &压枪系数, 0.0f, 10.0f);  
+ ImGui::TableNextColumn();
+// ImGui::SliderFloat("自瞄速率", &Y算法, 0.0f, 100.0f);
+// ImGui::TableNextColumn();
+// ImGui::SliderFloat("预判比率", &预判算法, 0.0f, 10.0f);
+ ImGui::SliderFloat("范围大小 ", &Config.AimBot.Cross, 0.0f, 200.0f);
+ImGui::TableNextColumn();
+
+}
+if(菜单3){
+if (ImGui::Button("<<自瞄区域"))
+    {
+    菜单1 = false;
+    菜单2 = true;
+    菜单3 = false;
+    菜单4 = false;
+    }
+    ImGui::SameLine();
+       ImGui::Text("作者[黑鲨] 合作[HZ] 感谢任何一个提供效果图玩家  ");
+    ImGui::SameLine();
+    if (ImGui::Button("防封区域>>"))
+    {
+    菜单1 = false;
+    菜单2 = false;
+    菜单3 = false;
+    菜单4 = true;
+    }
+    ImGui::Separator();
+    ImGui::Text("内存菜单");
+    ImGui::Separator();
+ImGui::TableNextColumn();
+//ImGui::BeginChild("PlayerESP", ImVec2(275, 285), true); {
+                ImGui::Checkbox("广角", &WideView);  
+                
+                ImGui::Spacing();
+                ImGui::Spacing();
+                 ImGui::Spacing();
+                 ImGui::Spacing();
+                ImGui::Spacing();
+                 ImGui::Spacing();
+                }
+if(菜单4){
+if (ImGui::Button("<<功能区域"))
+    {
+    菜单1 = false;
+    菜单2 = false;
+    菜单3 = true;
+    菜单4 = false;
+    }
+    ImGui::SameLine();
+    ImGui::Text("作者[黑鲨] 合作[HZ] 感谢任何一个提供效果图玩家 ");
+    ImGui::SameLine();
+    if (ImGui::Button("绘制区域>>"))
+    {
+    菜单1 = true;
+    菜单2 = false;
+    菜单3 = false;
+    菜单4 = false;
+    }
+    ImGui::Separator();
+    ImGui::Text("旁路菜单");
+    ImGui::Separator();
+ImGui::TableNextColumn();
+//ImGui::BeginChild("PlayerESP", ImVec2(275, 285), true); {
+              ImGui::Checkbox("大厅", &无敌jh);  
+          //    ImGui::Checkbox("防十年", &防十年); 
+            ///  ImGui::Checkbox("防禁网", &防禁网); 
+             // ImGui::Checkbox("防一天", &防一天); 
+            //  ImGui::RadioButton("Logo自动开启", &四百1); 
+             ImGui::Checkbox("Logo自动开启", &Logo); 
+          //    ImGui::Checkbox("全局离线", &全局离线);
+             ImGui::Text("logo以自动开启");
+                ImGui::Spacing();
+                ImGui::Spacing();
+                 ImGui::Spacing();
+                 ImGui::Spacing();
+                ImGui::Spacing();
+                 ImGui::Spacing();
+                }
+
+if (ImGui::Button("                              点击跳转电报                                              ")){
+
+OpenURL("https://t.me/FBBIBB"); 
+}
+    {
+
+
+
+}
+}
+
+if(悬浮窗){
+        
+        
+if (ImGui::Begin (OBFUSCATE("追踪菜单"), 0, ImGuiWindowFlags_NoSavedSettings | ImGuiWindowFlags_AlwaysAutoResize)) {
+ImGui::Text("追踪自行测试");
+if (ImGui::Button("开启追踪"))
+    {
+    Config.AimBot.Enabl = true;
+   // 加速 = true;
+   播放音乐("https://api.99778.cn/wp/view.php/00455b822f7e7c9e4f5ce2951fe54c57.mp3");
+    }
+    ImGui::SameLine();
+    if (ImGui::Button("关闭追踪"))
+    {
+    Config.AimBot.Enabl = false;
+   // 加速 = false;
+    }
+    ImGui::RadioButton("追踪函数1", &追踪函数, 1);
+            ImGui::SameLine();
+            ImGui::RadioButton("追踪函数2", &追踪函数, 2);
+ImGui::End();
+}
+}   
